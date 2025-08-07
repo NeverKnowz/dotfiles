@@ -26,7 +26,6 @@ else
     exit 1
 fi
 
-# Function to install packages
 install_packages() {
     local packages=("$@")
     echo "Installing packages: ${packages[*]} using $PACKAGE_MANAGER..."
@@ -63,7 +62,6 @@ else
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     if [ $? -ne 0 ]; then
         echo "Error: Failed to install Oh My Zsh."
-        # Do not exit here, as other steps might still be useful
     fi
 fi
 
@@ -76,7 +74,6 @@ else
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     if [ $? -ne 0 ]; then
         echo "Error: Failed to clone Vundle. Make sure Git is installed."
-        # Do not exit here
     fi
 fi
 
@@ -84,10 +81,8 @@ fi
 # -------------------
 echo "Symlinking dotfiles..."
 
-# Assuming this script is run from the root of your dotfiles repository
 DOTFILES_DIR=$(pwd)
 
-# List of dotfiles to symlink
 DOTFILES=(".vimrc" ".zshrc" ".tmux.conf")
 
 for dotfile in "${DOTFILES[@]}"; do
